@@ -27,9 +27,14 @@
     async function showJsResult() {
       document.getElementById('js-result').textContent = 'Caricamento...';
       try {
-        const res = await fetch('https://restful-api.dev/api/v1/objects/1');
-        const data = await res.json();
-        document.getElementById('js-result').textContent = JSON.stringify(data, null, 2);
+        const res = await fetch('https://ddsfsdfds.free.beeceptor.com/1');
+        const text = await res.text();
+        try {
+          const data = JSON.parse(text);
+          document.getElementById('js-result').textContent = JSON.stringify(data, null, 2);
+        } catch (e) {
+          document.getElementById('js-result').textContent = text;
+        }
       } catch (e) {
         document.getElementById('js-result').textContent = 'Errore: ' + e;
       }

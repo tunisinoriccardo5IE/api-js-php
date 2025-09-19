@@ -1,7 +1,8 @@
-// api_crud.js
-// Script JS per operazioni CRUD su https://restful-api.dev/
 
-const API_URL = 'https://restful-api.dev/api/v1/objects';
+// api_crud.js
+// Script JS per operazioni CRUD su https://ddsfsdfds.free.beeceptor.com
+
+const API_URL = 'https://ddsfsdfds.free.beeceptor.com';
 
 // Crea un elemento
 async function createItem(data) {

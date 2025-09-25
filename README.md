@@ -1,55 +1,45 @@
-# API JS PHP
+# CRUD API Demo (PHP & JavaScript)
 
-A project template for building and consuming APIs using JavaScript and PHP.
+Questo progetto mostra come consumare una semplice API RESTful (CRUD) sia in PHP (usando cURL) che in JavaScript (usando Fetch API). Include anche una collezione Postman per testare le richieste.
 
-## Features
+## Struttura dei file
 
-- Example API endpoints in PHP
-- JavaScript client for API consumption
-- Easy setup and configuration
+- `crud-api-postman.json` — Collezione Postman con richieste CRUD (importabile in Postman)
+- `api_crud_curl.php` — Script PHP che esegue richieste CRUD tramite cURL
+- `crud-api-demo.html` — Pagina web per testare le richieste CRUD in JavaScript
+- `crud-api-demo.css` — Stile base per la pagina HTML
 
-## Getting Started
-
-### Prerequisites
-
-- Docker (for containerized development)
-- Node.js and npm (for JS client)
-- PHP 8.x
-
-### Setup
-
-1. Clone the repository:
-    ```sh
-    git clone <repo-url>
-    cd api-js-php
-    ```
-
-2. Start the development environment:
-    ```sh
-    docker-compose up
-    ```
-
-3. Access the API and client as described in project documentation.
-
-## Project Structure
-
+## Endpoint di esempio
+Tutte le richieste puntano a un endpoint di esempio su [Beeceptor](https://beeceptor.com/crud-api/):
 ```
-/api-js-php
-  ├── api/         # PHP API source code
-  ├── client/      # JavaScript client code
-  ├── docker/      # Docker configuration
-  └── README.md
+https://beeceptor.com/crud-api/items
 ```
 
-## Usage
+## Come usare
 
-- Modify the PHP files in `api/` to add or update endpoints.
-- Use the JS client in `client/` to interact with the API.
+### 1. Test con Postman
+- Importa `crud-api-postman.json` in Postman
+- Esegui le richieste CRUD (Create, Read, Update, Delete)
 
-## Contributing
+### 2. Test con PHP (cURL)
+- Assicurati di avere PHP installato
+- Esegui:
+  ```bash
+  php api_crud_curl.php
+  ```
+- Vedrai le risposte delle operazioni CRUD nel terminale
 
-Pull requests are welcome. For major changes, please open an issue first.
+### 3. Test con HTML/JS
+- Apri `crud-api-demo.html` in un browser
+- Usa l’interfaccia per creare, visualizzare, modificare ed eliminare elementi
+- Le richieste sono fatte tramite Fetch API (sia con `.then` che con `async/await`)
 
-## License
+## Note
+- L’endpoint Beeceptor è solo un esempio: puoi sostituirlo con il tuo vero endpoint API.
+- Gli ID usati per update/delete sono di esempio (es: `1`).
+- Il file CSS è opzionale, solo per migliorare la grafica.
 
-[MIT](LICENSE)
+---
+
+**Autore:** tunisinoriccardo5IE
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD API Demo JS</title>
+  <style>
+    body { font-family: Arial; margin: 2em; }
+    input, button { margin: 0.5em; }
+    pre { background: #f4f4f4; padding: 1em; }
+  </style>
+</head>
+<body>
+  <h1>CRUD API Demo (JavaScript)</h1>
+  <div>
+    <h2>Crea elemento</h2>
+    <input id="createName" placeholder="Nome" />
+    <input id="createValue" placeholder="Valore" type="number" />
+    <button onclick="createItem()">Crea</button>
+  </div>
+  <div>
+    <h2>Visualizza elementi</h2>
+    <button onclick="readItems()">Visualizza</button>
+    <pre id="readResult"></pre>
+  </div>
+  <div>
+    <h2>Aggiorna elemento</h2>
+    <input id="updateId" placeholder="ID" type="number" />
+    <input id="updateName" placeholder="Nuovo nome" />
+    <input id="updateValue" placeholder="Nuovo valore" type="number" />
+    <button onclick="updateItem()">Aggiorna</button>
+  </div>
+  <div>
+    <h2>Elimina elemento</h2>
+    <input id="deleteId" placeholder="ID" type="number" />
+    <button onclick="deleteItem()">Elimina</button>
+  </div>
+  <script>
+    // CREATE con async/await
+    async function createItem() {
+      const name = document.getElementById('createName').value;
+      const value = document.getElementById('createValue').value;
+      const res = await fetch('https://beeceptor.com/crud-api/items', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, value })
+      });
+      const data = await res.json().catch(() => ({}));
+      alert('Creato: ' + JSON.stringify(data));
+    }
+
+    // READ con .then
+    function readItems() {
+      fetch('https://beeceptor.com/crud-api/items')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('readResult').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(err => {
+          document.getElementById('readResult').textContent = 'Errore: ' + err;
+        });
+    }
+
+    // UPDATE con async/await
+    async function updateItem() {
+      const id = document.getElementById('updateId').value;
+      const name = document.getElementById('updateName').value;
+      const value = document.getElementById('updateValue').value;
+      const res = await fetch('https://beeceptor.com/crud-api/items/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, value })
+      });
+      const data = await res.json().catch(() => ({}));
+      alert('Aggiornato: ' + JSON.stringify(data));
+    }
+
+    // DELETE con .then
+    function deleteItem() {
+      const id = document.getElementById('deleteId').value;
+      fetch('https://beeceptor.com/crud-api/items/' + id, { method: 'DELETE' })
+        .then(res => res.text())
+        .then(data => {
+          alert('Eliminato: ' + data);
+        })
+        .catch(err => {
+          alert('Errore: ' + err);
+        });
+    }
+  </script>
+</body>
+</html>
